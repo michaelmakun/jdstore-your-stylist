@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <h2>购物车</h2>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">商品详情</th>
+          <th>单价</th>
+          <th>数量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_cart.cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= link_to product_path(cart_item.product) do %>
+                <% if cart_item.product.image.present? %>
+                  <%= image_tag(cart_item.product.image.thumb, class: "thumbnail") %>
+                <% else %>
+                  <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:"200", height: "200",class: "thumbnail") %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to(cart_item.product.title, product_path(cart_item.product)) %>
+            </td>
+            <td>
+              <%= cart_item.product.price %>
+            </td>
+            <td><%= cart_item.quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <div class="total clearfix">
+      <span class="pull-right">
+        <span>总计 xxx Rmb</span>
+      </span>
+    </div>
+
+    <br>
+
+    <div class="checkout clearfix">
+      <%= link_to("确认结帐", "#", method: :post, class: "btn btn-danger btn-lg") %>
+    </div>
+  </div>
+</div>
