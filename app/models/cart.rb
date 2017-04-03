@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items, source: :product
   belongs_to :user
 
@@ -18,5 +18,9 @@ class Cart < ApplicationRecord
       end
     end
     sum
+  end
+
+  def clean!
+    cart_items.delete_all
   end
 end

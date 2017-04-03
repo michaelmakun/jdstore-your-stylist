@@ -3,6 +3,12 @@
 
     <h2>购物车</h2>
 
+    <div class="pull-right">
+      <%= link_to("清空购物车", clean_carts_path, method: :delete,
+                  style: "text-decoration: underline;", class: "btn btn-warning btn-xs",
+                  data: { confirm: "你确定你要清空整个购物车吗？"}) %>
+    </div>
+
     <table class="table table-bordered">
       <thead>
         <tr>
