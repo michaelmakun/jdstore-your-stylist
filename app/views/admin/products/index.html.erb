@@ -6,6 +6,7 @@
 
 <table class="table table-bordered table-striped">
   <thead>
+    <th width="220">商品图</th>
     <th>商品名称</th>
     <th>商品价格</th>
     <th>商品库存</th>
@@ -14,6 +15,15 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
+        <td>
+          <%= link_to product_path(product) do %>
+            <% if product.image.present? %>
+              <%= image_tag(product.image.thumb, class: "thumbnail") %>
+            <% else %>
+              <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:"200", height: "200",class: "thumbnail") %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to(product.title, admin_product_path(product)) %></td>
         <td><%= product.price %></td>
         <td><%= product.quantity %></td>

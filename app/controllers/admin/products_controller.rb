@@ -30,7 +30,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to admin_products_path
+      redirect_to admin_products_path, notice: "商品更新成功"
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to admin_products_path
+    redirect_to admin_products_path, alert: "商品删除成功！"
   end
 
   private
@@ -47,6 +47,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title,:description, :price, :quantity)
+    params.require(:product).permit(:title,:description, :price, :quantity, :image)
   end
 end
