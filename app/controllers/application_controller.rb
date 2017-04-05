@@ -17,22 +17,15 @@ class ApplicationController < ActionController::Base
   private
 
   def find_cart
-    if !current_user
-      cart = Cart.find_by(id: session[:cart_id])
-      if cart.blank?
-        cart = Cart.create
-      end
-      session[:cart_id] = cart.id
-      return cart
-    else
-      cart = Cart.find_by(id: session[:user_id])
-      if cart.blank?
-        cart = Cart.create
-      end
-      session[:user_id] = current_user.id
-      return cart
+    cart = Cart.find_by(id: session[:cart_id])
+    if cart.blank?
+      cart = Cart.create
     end
+    # if current_user
+    #   session[:cart_id] = current_user.id
+    # else
+      session[:cart_id] = cart.id
+    # end
+    return cart
   end
-
-
 end

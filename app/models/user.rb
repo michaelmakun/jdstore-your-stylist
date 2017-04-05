@@ -8,6 +8,5 @@ class User < ApplicationRecord
     is_admin
   end
 
-  has_many :carts
   has_many :orders
 end
