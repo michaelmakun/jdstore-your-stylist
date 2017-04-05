@@ -39,6 +39,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'aasm'
+gem 'figaro'
 
 gem 'letter_opener', group: :development
 
