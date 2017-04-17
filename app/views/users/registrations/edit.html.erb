@@ -1,0 +1,35 @@
+<h2>编缉帐户 <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, label: "邮箱", required: true, autofocus: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <%= f.input :password, label: "密码", autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+    <%= f.input :password_confirmation, label: "确认密码", required: false %>
+    <%= f.input :current_password, label: "当前密码(必填)", hint: "we need your current password to confirm your changes", required: true %>
+    <%= f.input :nickname, label: "昵称" %>
+    <% if current_user.image.present? %>
+      <span>当前造型</span><br>
+      <%= image_tag(current_user.image.thumb.url) %>
+    <% end %>
+    <hr>
+    <%= f.input :image, label: "重新选择造型", as: :file %>
+    <%= f.input :description, label: "个人简介" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "更新帐号" %>
+  </div>
+<% end %>
+
+<h3>删除帐号</h3>
+
+<p>体验不好? <%= link_to "删除帐号", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "返回", :back %>
