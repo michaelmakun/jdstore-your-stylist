@@ -13,25 +13,25 @@
   </thead>
   <tbody>
     <% @products.each do |product| %>
-      <tr>
-        <td>
-          <%= link_to account_product_path(product) do %>
-            <% if product.image.present? %>
-              <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
-            <% else %>
-              <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:200, height:200,class: "thumbnail") %>
+      <% if current_user && current_user == product.user %>
+        <tr>
+          <td>
+            <%= link_to account_product_path(product) do %>
+              <% if product.image.present? %>
+                <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+              <% else %>
+                <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:200, height:200,class: "thumbnail") %>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td>
-          <% if current_user && current_user == product.user %>
+          </td>
+          <td><%= product.title %></td>
+          <td><%= product.price %></td>
+          <td>
             <%= link_to("编缉商店", edit_account_product_path(product), class: "btn btn-success btn-xs") %>
             <%= link_to("删除商店", account_product_path(product), method: :delete, class: "btn btn-danger btn-xs") %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
