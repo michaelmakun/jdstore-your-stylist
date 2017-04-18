@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :products do
+    resources :works
     member do
       post :add_to_cart
     end

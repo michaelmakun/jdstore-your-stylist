@@ -1,12 +1,11 @@
 <div class="row">
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
+    <h1>店铺信息</h1>
     <% if @product.image.present? %>
       <%= image_tag(@product.image.medium, class: "thumbnail") %>
     <% else %>
       <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:"400", height: "400",class: "thumbnail")%>
     <% end %>
-  </div>
-  <div class="col-md-6">
     <h2><%= @product.title %></h2>
     <div style="height:100px;">
       <p>
@@ -14,13 +13,51 @@
       </p>
     </div>
     <div> 数量: <%= @product.quantity %></div>
-    <div class="product-price">单价: <%= @product.price %></div>
-    <div class="pull-right">
-      <% if @product.quantity.present? && @product.quantity > 0 %>
-        <%= link_to("加入购物车", add_to_cart_product_path(@product), method: :post, class: "btn btn-danger btn-lg") %>
+    <div class="product-price">单次造型设计价格: <%= @product.price %></div>
+  </div> -->
+  <div class="col-md-6">
+    <h1>造型师简介</h1>
+    <% if @product.user.image.present? %>
+      <%= image_tag(@product.user.image.medium, class: "thumbnail") %>
+    <% else %>
+      <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:"400", height: "400",class: "thumbnail")%>
+    <% end %>
+    <h2>
+      <% if @product.user.nickname.present? %>
+        <%= @product.user.nickname %>
       <% else %>
-        销售已空，无法购买
+        <%= @product.user.email %>
       <% end %>
-    </div>
+    </h2>
+    <h3>
+      <%= @product.user.description %>
+    </h3>
+    <div class="product-price">单次造型设计价格: <%= @product.price %></div>
   </div>
+</div>
+<hr>
+<div class="clearfix">
+  <% if @product.quantity.present? && @product.quantity > 0 %>
+    <%= link_to("购买一次造型设计", add_to_cart_product_path(@product), method: :post, class: "btn btn-danger btn-lg pull-right") %>
+  <% else %>
+    销售已空，无法购买
+  <% end %>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h3>造型师作品</h3>
+  </div>
+  <hr>
+  <% @product.works.each do |work| %>
+    <div class="col-md-4 col-xs-6">
+      <% if work.image.present? %>
+        <%= image_tag(work.image.thumb.url, class: "thumbnail") %>
+      <% else %>
+        <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:"200", height: "200",class: "thumbnail") %>
+      <% end %>
+      <h3><%= work.title %></h3>
+      <h4><%= work.description %></h4>
+    </div>
+  <% end %>
 </div>
