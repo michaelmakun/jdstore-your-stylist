@@ -18,7 +18,7 @@ class Account::WorksController < ApplicationController
     @work = Work.new(work_params)
     @work.product_id = @product.id
     if @work.save
-      redirect_to account_products_path(@product)
+      redirect_to account_product_path(@product)
     else
       render :new
     end
