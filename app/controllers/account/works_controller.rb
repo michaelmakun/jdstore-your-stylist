@@ -14,9 +14,11 @@ class Account::WorksController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
+
     @work = Work.new(work_params)
+    @work.product_id = @product.id
     if @work.save
-      redirect_to @product
+      redirect_to account_products_path(@product)
     else
       render :new
     end
@@ -25,6 +27,7 @@ class Account::WorksController < ApplicationController
   def edit
     @product = Product.find(params[:product_id])
     @work = Work.find(params[:id])
+    @work.product_id = @product.id
   end
 
   def update
@@ -32,7 +35,7 @@ class Account::WorksController < ApplicationController
     @work = Work.find(params[:id])
     @work.product_id = @product.id
     if @work.update(work_params)
-      redirect_to @product
+      redirect_to account_product_path(@product), notice: "作品更新成功"
     else
       render :edit
     end
@@ -42,7 +45,7 @@ class Account::WorksController < ApplicationController
     @product = Product.find(params[:product_id])
     @work = Work.find(params[:id])
     @work.destroy
-    redirect_to @product
+    redirect_to account_product_path(@product), alert: "作品删除成功！"
   end
 
   private

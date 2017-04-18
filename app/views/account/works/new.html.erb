@@ -1,0 +1,11 @@
+<h1>上传作品</h1>
+
+<%= simple_form_for [:account,@product, @work] do |f| %>
+
+  <%= f.input :title, label: "作品名称" %>
+  <%= f.input :image, label: "作品造型",as: :file %>
+  <%= f.input :description, label: "作品简介" %>
+
+  <%= f.submit "确定" %>
+
+<% end %>

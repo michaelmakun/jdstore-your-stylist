@@ -16,7 +16,8 @@
       <% if current_user && current_user == product.user %>
         <tr>
           <td>
-            <%= link_to account_product_path(product) do %>
+            <%= link_to account_product_path(product),style: "text-decoration:none" do %>
+              <span>点此可进入商店，上传您的作品</span>
               <% if product.image.present? %>
                 <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
               <% else %>

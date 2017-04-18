@@ -39,7 +39,7 @@ class Account::ProductsController < ApplicationController
     end
 
     if @product.update(product_params)
-      redirect_to account_products_path
+      redirect_to account_products_path, notice: "编缉商店成功！"
     else
       render :new
     end
@@ -51,7 +51,7 @@ class Account::ProductsController < ApplicationController
       redirect_to account_products_path, alert: "You have no permission"
     end
     @product.destroy
-    redirect_to account_products_path
+    redirect_to account_products_path, alert: "关闭商店成功！"
   end
 
   private

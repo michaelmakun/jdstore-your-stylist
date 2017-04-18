@@ -1,0 +1,16 @@
+<h1>编缉作品</h1>
+
+<%= simple_form_for [:account,@product, @work] do |f| %>
+
+  <%= f.input :title, label: "作品名称" %>
+  <% if @work.image.present? %>
+    <%= image_tag(@work.image.thumb.url) %>
+  <% else %>
+    <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:200, height:200,class: "thumbnail") %>
+  <% end %>
+  <%= f.input :image, label: "作品造型",as: :file %>
+  <%= f.input :description, label: "作品简介" %>
+
+  <%= f.submit "确定" %>
+
+<% end %>

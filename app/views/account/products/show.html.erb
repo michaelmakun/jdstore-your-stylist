@@ -1,3 +1,37 @@
 <h2>商店详情</h2>
 
 <%= simple_format(@product.description) %>
+
+<div class="pull-right">
+  <%= link_to("上传作品", new_account_product_work_path(@product), class: "btn btn-primary") %>
+</div>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>作品造型</th>
+    <th>作品名称</th>
+    <th>作品简介</th>
+    <th>管理选项</th>
+  </thead>
+  <tbody>
+    <% @product.works.each do |work| %>
+      <% if current_user && current_user == @product.user %>
+        <tr>
+          <td>
+            <% if work.image.present? %>
+              <%= image_tag(work.image.thumb.url) %>
+            <% else %>
+              <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:200, height:200,class: "thumbnail") %>
+            <% end %>
+          </td>
+          <td><%= work.title %></td>
+          <td><%= simple_format(work.description) %></td>
+          <td>
+            <%= link_to("编缉作品", edit_account_product_work_path(@product,work), class: "btn btn-success btn-xs") %>
+            <%= link_to("删除作品", account_product_work_path(@product,work), method: :delete, class: "btn btn-danger btn-xs") %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
