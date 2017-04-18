@@ -1,0 +1,18 @@
+<h1>编缉商店</h1>
+
+<%= simple_form_for [:account, @product] do |f| %>
+
+  <%= f.input :title, label: "商店名称" %>
+  <%= f.input :description, label: "商店简介" %>
+  <%= f.input :price, label: "单次造型设计价格" %>
+  <%= f.input :quantity, label: "设计次数" %>
+
+  <% if @product.image.present? %>
+    <span>目前商店造型</span><br>
+    <%= image_tag(@product.image.thumb.url) %>
+  <% end %>
+  <%= f.input :image, label: "商店图案", as: :file %>
+
+  <%= f.submit "修改店铺" %>
+
+<% end %>

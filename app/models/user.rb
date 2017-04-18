@@ -8,6 +8,12 @@ class User < ApplicationRecord
     is_admin
   end
 
+  def stylist?
+    is_stylist
+  end
+
   has_many :orders
   mount_uploader :image, ImageUploader
+
+  has_many :products
 end

@@ -1,0 +1,37 @@
+<h3>我的店铺</h3>
+
+<div class="pull-right">
+  <%= link_to("新的店铺", new_account_product_path, class: "btn btn-primary") %>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <th>店铺造型</th>
+    <th>店铺名称</th>
+    <th>单次造型价格</th>
+    <th>管理选项</th>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td>
+          <%= link_to account_product_path(product) do %>
+            <% if product.image.present? %>
+              <%= image_tag(product.image.thumb.url, class: "thumbnail") %>
+            <% else %>
+              <%= image_tag("https://ww1.sinaimg.cn/large/006tNc79gy1fdyy9beax0g30a00a0mx3.gif", width:200, height:200,class: "thumbnail") %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= product.title %></td>
+        <td><%= product.price %></td>
+        <td>
+          <% if current_user && current_user == product.user %>
+            <%= link_to("编缉商店", edit_account_product_path(product), class: "btn btn-success btn-xs") %>
+            <%= link_to("删除商店", account_product_path(product), method: :delete, class: "btn btn-danger btn-xs") %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<h1>新增商店</h1>
+
+<%= simple_form_for [:account, @product] do |f| %>
+
+  <%= f.input :title, label: "商店名称" %>
+  <%= f.input :description, label: "商店简介" %>
+  <%= f.input :price, label: "单次造型设计价格" %>
+  <%= f.input :image, label: "商店图案", as: :file %>
+  <%= f.input :quantity, label: "设计次数" %>
+
+  <%= f.submit "开店" %>
+
+<% end %>

@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     @current_cart ||= find_cart
   end
 
+  def require_stylist
+    if !current_user.stylist?
+      flash[:alert] = "你不是造型师"
+      redirect_to root_path
+    end
+  end
+
   private
 
   def find_cart
