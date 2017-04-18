@@ -49,4 +49,15 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :stylist do
+    resources :orders do
+      member do
+        post :ship
+        post :shipped
+        post :return
+        post :cancel
+      end
+    end
+  end
 end

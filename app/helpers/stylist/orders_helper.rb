@@ -1,0 +1,2 @@
+module Stylist::OrdersHelper
+end
