@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.total = current_cart.total_price
-
+    current_cart.cart_items.each do |cart_item|
+      @order.product = cart_item.product
+    end
     if @order.save
 
       current_cart.cart_items.each do |cart_item|

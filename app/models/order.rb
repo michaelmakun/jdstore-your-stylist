@@ -6,12 +6,12 @@ class Order < ApplicationRecord
   end
 
   belongs_to :user
+  belongs_to :product
   validates :billing_name, presence: true
   validates :billing_address, presence: true
   validates :shipping_name, presence: true
   validates :shipping_address, presence: true
   has_many :product_lists
-  has_many :products
 
   def payment_method!(method)
     self.update_columns(payment_method: method)

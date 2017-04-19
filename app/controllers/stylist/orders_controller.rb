@@ -3,9 +3,17 @@ class Stylist::OrdersController < ApplicationController
   before_action :require_stylist
 
   def index
+    @products = current_user.products
+    @products.each do |product|
+      # if current_user.id == product.user_id
+        @orders = product.orders
+      # end
+    end
+    # @orders += product.orders
+    # @orders = current_user.orders
     # @product = @order.products.find_by(order_id: params[:order_id])
     # if current_user.id == @product.user_id
-      @orders = current_user.orders.order("id DESC")
+    # @orders = current_user.orders.order("id DESC")
     # end
   end
 

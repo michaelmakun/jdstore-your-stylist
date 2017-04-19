@@ -6,5 +6,5 @@ class Product < ApplicationRecord
 
   has_many :works, dependent: :destroy
   belongs_to :user
-  belongs_to :order
+  has_many :orders
 end
