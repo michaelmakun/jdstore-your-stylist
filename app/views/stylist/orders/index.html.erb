@@ -10,13 +10,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to(order.id, stylist_order_path(order)) %></td>
-        <td><%= order.created_at.to_s(:long) %></td>
-        <td><%= order.user.email %></td>
-        <td><%= order.aasm_state %></td>
-      </tr>
+    <% if @products = current_user.products %>
+      <% @products.each do |product| %>
+        <% @orders = product.orders %>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to(order.id, stylist_order_path(order)) %></td>
+            <td><%= order.created_at.to_s(:long) %></td>
+            <td><%= order.user.email %></td>
+            <td><%= order.aasm_state %></td>
+          </tr>
+        <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
